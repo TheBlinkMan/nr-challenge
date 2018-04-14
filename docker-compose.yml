@@ -1,0 +1,25 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: nr-challenge
+    ports:
+      - 8080:80
+    volumes:
+      - .:/srv/app
+    environment:
+      DB_HOST: mariadb
+      DB_DATABASE: nr-challenge
+      DB_USERNAME: app
+      DB_PASSWORD: password
+  mariadb:
+    image: mariadb:10.2
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_DATABASE: nr-challenge
+      MYSQL_USER: app
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
