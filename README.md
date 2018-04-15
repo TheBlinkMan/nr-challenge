@@ -7,11 +7,28 @@
 git clone https://github.com/TheBlinkMan/nr-challenge
 ```
 
-### How to run the app without Docker Compose:
+### How to run the app with Docker Compose:
 
-##### Requirements:
+#### Requirements:
 * Internet Access
+* PHP
 * Docker
+* Composer
+* Docker Compose *
+
+#### Run this commands:
+```
+cd nr-challenge
+composer install
+cp .env.example .env
+php artisan key:generate
+chmod -R o+rw bootstrap/ storage/
+docker-compose up --build
+```
+
+### Access the url localhost:8080 using a browser or a CLI tool
+
+### How to run the app without Docker Compose:
 
 #### Run this commands:
 ##### First, build the docker image.
@@ -25,25 +42,4 @@ git clone https://github.com/TheBlinkMan/nr-challenge
     docker run \
       --name nr-challenge-app \
       --rm -p 8080:80 nr-challenge
-```
-
-### How to run the app with Docker Compose:
-
-#### Requirements:
-* Internet Access
-* Docker
-* Docker Compose
-
-#### Run this command:
-```
-docker-compose up --build
-```
-
-### Access the url localhost:8080 using a browser or a CLI tool
-
-### Problems:
-If you can't access the website try changing the modes of the folder using
-this command:
-```
-chmod -R o+rw bootstrap/ storage/
 ```
